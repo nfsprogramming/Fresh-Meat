@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fresh Meat · Delivery address (preview)</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ember:#ff5a3c;--crimson:#c2182f;--cream:#fff3e8;--ink:#3a1a14;--brown:#8a6a60;--blush:#ffe3d8;--line:#f0e0d2;--grad:linear-gradient(135deg,#ff8a5c,#ff4d2e)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#0b0306;font-family:Manrope,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;color:var(--cream)}
+.phone{position:relative;overflow:hidden;width:390px;height:844px;max-height:100vh;background:#14090c;border-radius:34px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+@media (max-width:430px){body{display:block}.phone{width:100%;height:100vh;height:100dvh;max-height:none;border-radius:0;box-shadow:none}}
+.display{font-family:Unbounded,sans-serif}
+button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
+
+/* map */
+.map{position:absolute;left:0;top:0;width:100%;height:330px}
+.pin{position:absolute;left:50%;top:104px;width:60px;height:80px;margin-left:-30px;filter:drop-shadow(0 8px 8px rgba(0,0,0,.5))}
+.pulse{position:absolute;left:50%;top:132px;width:64px;height:64px;margin-left:-32px}
+.pulse span{position:absolute;inset:0;border-radius:50%;background:var(--ember);animation:ring 2.2s ease-out infinite}
+@keyframes ring{0%{transform:scale(.4);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+.glass{background:rgba(30,10,14,.72);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.back{position:absolute;left:20px;top:20px;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.search{position:absolute;left:76px;right:20px;top:20px;height:44px;border-radius:14px;display:flex;align-items:center;gap:10px;padding:0 14px}
+.search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--cream);font:500 13px Manrope,sans-serif}
+.search input::placeholder{color:rgba(255,243,232,.7)}
+.hint{position:absolute;left:50%;top:236px;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:99px;font-size:11px;font-weight:700}
+.locate{position:absolute;right:20px;top:226px;width:48px;height:48px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px rgba(0,0,0,.4)}
+
+/* sheet */
+.sheet{position:absolute;left:0;right:0;top:290px;bottom:0;background:var(--cream);color:var(--ink);border-radius:34px 34px 0 0;box-shadow:0 -20px 40px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.scroll{flex:1;overflow-y:auto;padding:14px 22px 16px;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.grab{width:40px;height:4px;border-radius:2px;background:#e3cfc0;margin:0 auto 14px}
+.head{display:flex;align-items:center;gap:12px}
+.head .ic{width:44px;height:44px;border-radius:50%;background:var(--blush);color:var(--crimson);display:flex;align-items:center;justify-content:center;flex:none}
+.head h1{margin:0;font:800 19px Unbounded,sans-serif}
+.head p{margin:2px 0 0;font-size:12px;color:var(--brown)}
+.ok{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#e8f4ec;color:#1f7a45;border-radius:99px;padding:8px 14px;font-size:12px;font-weight:800}
+.cap{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--brown);margin:16px 0 8px}
+.fld{margin-top:14px}
+.fld .cap{margin:0 0 6px}
+.box{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 16px;transition:border-color .2s}
+.box:focus-within{border-color:var(--ember)}
+.box.err{border-color:var(--crimson);border-width:1.5px}
+.box input{flex:1;min-width:0;border:0;outline:0;background:none;padding:15px 0;font:700 14px Manrope,sans-serif;color:var(--ink)}
+.box input::placeholder{color:#a89288;font-weight:500}
+.error{display:none;margin:6px 4px 0;font-size:12px;font-weight:700;color:var(--crimson)}
+.error.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 16px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink);transition:all .2s}
+.chip.on{background:var(--grad);border-color:transparent;color:#fff;font-weight:800}
+.cta{padding:14px 22px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--cream)}
+.confirm{position:relative;overflow:hidden;width:100%;height:58px;border-radius:29px;background:var(--grad);color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 14px 28px rgba(255,77,46,.35)}
+.confirm::after{content:"";position:absolute;top:0;left:0;width:60px;height:100%;background:rgba(255,255,255,.38);transform:translateX(-140px) skewX(-20deg);animation:shine 3s ease-in-out infinite}
+@keyframes shine{0%{transform:translateX(-140px) skewX(-20deg)}60%,100%{transform:translateX(460px) skewX(-20deg)}}
+.toast{position:absolute;left:20px;right:20px;top:84px;z-index:5;background:rgba(20,9,12,.92);border:1px solid rgba(255,255,255,.16);color:var(--cream);border-radius:16px;padding:14px 16px;font-size:13px;font-weight:700;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .3s}
+.toast.on{opacity:1;transform:none}
+svg{display:block}
+</style>
+</head>
+<body>
+<main class="phone">
+  <svg class="map" viewBox="0 0 390 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="390" height="330" fill="#1b0b10"/>
+    <rect x="214" y="120" width="130" height="80" rx="10" fill="#1c2a1e" opacity=".7"/>
+    <path d="M0 110H390M0 230H390M90 0V330M215 0V330M320 0V330M0 300L390 60" stroke="rgba(255,255,255,.07)" stroke-width="16"/>
+    <path d="M0 170H390" stroke="rgba(255,255,255,.1)" stroke-width="22"/>
+  </svg>
+  <div class="pulse"><span></span></div>
+  <svg class="pin" viewBox="-30 -42 60 80" aria-hidden="true">
+    <defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset="1" stop-color="#ff3d2e"/></linearGradient></defs>
+    <path d="M0 -36C-20 -36 -30 -22 -30 -8C-30 14 0 38 0 38C0 38 30 14 30 -8C30 -22 20 -36 0 -36Z" fill="url(#pg)"/>
+    <circle cx="0" cy="-8" r="11" fill="#fff3e8"/>
+  </svg>
+
+  <button class="back glass" aria-label="Back" onclick="toast('Back (preview only)')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <label class="search glass">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></svg>
+    <input id="q" type="text" placeholder="Search area, street or landmark" aria-label="Search area, street or landmark" enterkeyhint="search">
+  </label>
+  <div class="hint glass">Move the map to adjust the pin</div>
+  <button class="locate" aria-label="Use current location" onclick="toast('Location lookup is not connected in this preview')">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+  </button>
+
+  <section class="sheet" aria-label="Delivery address">
+    <div class="scroll">
+      <div class="grab"></div>
+      <div class="head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span>
+        <div style="min-width:0"><h1 id="area">Royapuram</h1><p id="street">[Street address], Chennai, Tamil Nadu</p></div>
+      </div>
+      <div class="ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>We deliver here · about [ETA] min, cold-chain</div>
+
+      <div class="fld">
+        <div class="cap">FLAT / HOUSE NO. / FLOOR</div>
+        <div class="box" id="houseBox">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a6a60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15M9 21v-6h6v6"/></svg>
+          <input id="house" type="text" placeholder="e.g. Flat 302, 3rd floor" autocomplete="off" aria-describedby="houseErr">
+        </div>
+        <div class="error" id="houseErr" role="alert">Add your flat or house number so the rider can find you.</div>
+      </div>
+      <div class="fld">
+        <div class="cap">LANDMARK (OPTIONAL)</div>
+        <div class="box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a6a60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>
+          <input id="landmark" type="text" placeholder="e.g. Near the bus stop" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="cap">SAVE AS</div>
+      <div class="chips" id="labels">
+        <button class="chip on" type="button">Home</button><button class="chip" type="button">Work</button><button class="chip" type="button">Other</button>
+      </div>
+
+      <div class="cap">NOTE FOR RIDER</div>
+      <div class="chips" id="notes">
+        <button class="chip on" type="button">Call on arrival</button><button class="chip" type="button">Leave at door</button><button class="chip" type="button">Don't ring bell</button>
+      </div>
+    </div>
+    <div class="cta">
+      <button class="confirm" id="confirm" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Confirm address
+      </button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+let tt;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)}
+
+// single-select "Save as"
+$('#labels').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  [...$('#labels').children].forEach(c=>c.classList.toggle('on',c===b));
+});
+// multi-select rider notes
+$('#notes').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(b) b.classList.toggle('on');
+});
+// search updates the address summary
+$('#q').addEventListener('keydown',e=>{
+  if(e.key!=='Enter') return;
+  const v=e.target.value.trim(); if(!v) return;
+  $('#street').textContent=v; $('#area').textContent=v.split(',')[0].trim(); e.target.blur();
+});
+// clear the error while typing
+$('#house').addEventListener('input',()=>{$('#houseBox').classList.remove('err');$('#houseErr').classList.remove('on')});
+// confirm with validation
+$('#confirm').addEventListener('click',()=>{
+  const house=$('#house').value.trim();
+  if(!house){$('#houseBox').classList.add('err');$('#houseErr').classList.add('on');$('#house').focus();return}
+  const label=$('#labels .on').textContent;
+  const notes=[...document.querySelectorAll('#notes .on')].map(n=>n.textContent).join(', ')||'no rider notes';
+  const lm=$('#landmark').value.trim();
+  toast('Saved as '+label+': '+[house,lm,$('#street').textContent].filter(Boolean).join(', ')+' ('+notes+')');
+});
+</script>
+</body>
+</html>

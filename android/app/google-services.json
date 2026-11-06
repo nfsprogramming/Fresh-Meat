@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "512551262542",
+    "project_id": "fresh-meat-39fbb",
+    "storage_bucket": "fresh-meat-39fbb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512551262542:android:2852c6f6299a386372661f",
+        "android_client_info": {
+          "package_name": "com.fresh.meat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512551262542-rean3mro6r7572bu5vh2n8pdon33728d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fresh.meat",
+            "certificate_hash": "3f570f3b76a683281d134ff24725a38254dd901d"
+          }
+        },
+        {
+          "client_id": "512551262542-4a34n2l63s0cro80em0o7ppuu9q1sjeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbmkcPdlRJysvLYqav6oHJAHybEcFnkD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512551262542-4a34n2l63s0cro80em0o7ppuu9q1sjeq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

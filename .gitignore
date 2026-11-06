@@ -1,0 +1,63 @@
+# Miscellaneous & OS
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ / IDE
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter / Dart / Pub
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Android build & local configs
+**/android/local.properties
+/android/app/debug
+/android/app/profile
+/android/app/release
+.cxx/
+
+# Obfuscation & Symbolication
+app.*.symbols
+app.*.map.json
+
+# Widget Preview
+.widget_preview/
+
+# Environment & Secrets (Never commit secrets)
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+
+# Bundles & Release Artifacts
+*.bundle
+*.apk
+*.aab
+checksums.txt
+
+# Node & Serverless
+node_modules/
+.vercel/
